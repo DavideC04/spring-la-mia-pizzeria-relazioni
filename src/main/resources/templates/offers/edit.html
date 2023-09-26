@@ -16,13 +16,13 @@
     <hr>
 
     <form
-            th:action="@{/}"
+            th:action="@{/offers/edit/{id}(id=${specialOffer.id})}"
             id="offer-form"
             method="POST"
             th:object="${specialOffer}"
     >
 
-        <!-- startDate -->
+
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
             <input type="date" class="form-control" id="title" th:field="*{title}"
@@ -33,7 +33,7 @@
                 </ul>
             </div>
         </div>
-        <!-- expireDate -->
+
         <div class="mb-3">
             <label for="start-date" class="form-label">Start Date</label>
             <input type="date" class="form-control" id="start-date" th:field="*{startDate}"
@@ -44,7 +44,7 @@
                 </ul>
             </div>
         </div>
-        <!-- returnDate -->
+
         <div class="mb-3">
             <label for="end-date" class="form-label">End Date</label>
             <input type="date" class="form-control" id="end-date" th:field="*{endDate}"
