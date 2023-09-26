@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Special Offers</title>
+</head>
+<body>
+<div class="container">
+    <h1>Create Special Offer</h1>
+    <hr>
+    <form
+            id="offers-form"
+            th:action="@{/offers/create}"
+            th:object="${specialOffer}"
+            method="post"
+    >
+        
+        <div class="mb-3">
+            <label for="start-date" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="start-date" th:field="*{startDate}"
+                   th:errorClass="is-invalid">
+
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('startDate')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('startDate')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="end-date" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="end-date" th:field="*{endDate}"
+                   th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('endDate')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('endDate')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a th:href="@{/pizza/show/{pizzaId}(pizzaId=${specialOffer.pizza.id})}" class="btn btn-primary">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
