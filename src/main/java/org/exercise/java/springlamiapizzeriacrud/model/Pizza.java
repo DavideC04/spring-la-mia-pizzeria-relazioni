@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -70,4 +71,16 @@ public class Pizza {
     public void setSpecialOffers(List<SpecialOffer> specialOffers) {
         this.specialOffers = specialOffers;
     }
+
+    // metodo per vedere se ci sono offerte speciali
+    public boolean hasActiveSpecialOffer() {
+        LocalDate currentDate = LocalDate.now();
+        for (SpecialOffer offer : specialOffers) {
+            if (offer.getStartDate().isBefore(currentDate) && offer.getEndDate().isAfter(currentDate)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
+

@@ -36,6 +36,7 @@
             <th>Description</th>
             <th>Price</th>
             <th>Link</th>
+            <th>Offers</th>
         </tr>
         </thead>
         <tbody>
@@ -54,6 +55,10 @@
                             class="fa-solid fa-trash"></i></button>
                 </form>
             </td>
+            <td>
+                <span class="badge bg-primary" th:if="${pizze.hasActiveSpecialOffer()}">Special Offer</span>
+            </td>
+
         </tr>
         </tbody>
     </table>
