@@ -36,6 +36,7 @@ public class OfferController {
             // allo specialOffer associo la pizza presa dal db
             specialOffer.setPizza(pizza);
             // precarico i campi dati dai valori di default
+            specialOffer.setTitle("Title");
             specialOffer.setStartDate(LocalDate.now());
             specialOffer.setEndDate(LocalDate.now().plusDays(30));
             // passo la specialOffer alla view con il model

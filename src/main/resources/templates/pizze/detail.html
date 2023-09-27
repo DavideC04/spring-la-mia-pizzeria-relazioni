@@ -44,14 +44,14 @@
             <td th:text="${offer.title}"></td>
             <td th:text="${offer.startDate}"></td>
             <td th:text="${offer.endDate}"></td>
-            <td>
+            <td class="d-flex">
                 <a th:href="@{/offers/edit/{offerId}(offerId=${offer.id})}"
                    class="btn btn-primary">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                 </a>
                 <form th:action="@{/offers/delete/{offerId}(offerId=${offer.id})}"
                       method="post">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-danger mx-2">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </form>

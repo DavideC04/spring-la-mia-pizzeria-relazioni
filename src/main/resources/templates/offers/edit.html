@@ -21,11 +21,11 @@
             method="POST"
             th:object="${specialOffer}"
     >
-
+        <input type="hidden" th:field="*{pizza}">
 
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="date" class="form-control" id="title" th:field="*{title}"
+            <input type="text" class="form-control" id="title" th:field="*{title}"
                    th:errorClass="is-invalid">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}">
                 <ul>

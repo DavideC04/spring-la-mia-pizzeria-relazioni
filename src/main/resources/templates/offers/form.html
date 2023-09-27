@@ -19,6 +19,17 @@
             th:object="${specialOffer}"
             method="post"
     >
+        <input type="hidden" th:field="*{pizza}">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" th:field="*{title}"
+                   th:errorClass="is-invalid">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
+                </ul>
+            </div>
+        </div>
         <div class="mb-3">
             <label for="start-date" class="form-label">Start Date</label>
             <input type="date" class="form-control" id="start-date" th:field="*{startDate}"
