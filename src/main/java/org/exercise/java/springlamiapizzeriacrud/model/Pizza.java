@@ -28,6 +28,8 @@ public class Pizza {
 
     @OneToMany(mappedBy = "pizza", cascade = {CascadeType.REMOVE})
     private List<SpecialOffer> specialOffers;
+    @ManyToMany
+    private List<Ingredient> ingredients;
 
     // GETTER E SETTER
 
@@ -70,6 +72,14 @@ public class Pizza {
 
     public void setSpecialOffers(List<SpecialOffer> specialOffers) {
         this.specialOffers = specialOffers;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     // metodo per vedere se ci sono offerte speciali

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Ingredients</title>
+</head>
+<body>
+<div class="container my-2">
+    <h1>Ingredients</h1>
+    <hr>
+    <section>
+        <section class="mb-4">
+            <form
+                    th:action="@{/ingredients/create}"
+                    id="ingredient-form"
+                    th:object="${ingredientObj}"
+                    method="post"
+            >
+                <div class="input-group">
+                    <input type="text" class="form-control" id="ingredient-name" th:field="*{name}"
+                           placeholder="Add an ingredient">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </section>
+    </section>
+    <section>
+        <ul class="list-group">
+            <li class="list-group-item d-flex align-items-center justify-content-between"
+                th:each="ingredient : ${ingredientList}"
+
+            >
+                <div th:text="${ingredient.name}"></div>
+                <div class="d-flex align-items-center">
+                    <form th:action="@{/ingredients/delete/{ingredientId}(ingredientId=${ingredient.id})}"
+                          method="post">
+                        <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                </div>
+
+            </li>
+        </ul>
+    </section>
+
+</div>
+</body>
+</html>
