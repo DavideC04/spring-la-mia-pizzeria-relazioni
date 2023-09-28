@@ -19,19 +19,32 @@
             method="post"
             th:object="${pizze}"
     >
-        <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" id="name" class="form-control" th:field="*{name}">
+        <div class="col-8">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" class="form-control" th:field="*{name}">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" id="description" class="form-control" th:field="*{description}">
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="text" id="price" class="form-control" th:field="*{price}">
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <input type="text" id="description" class="form-control" th:field="*{description}">
+
+        <div class="col-4">
+            <h4>Ingredients</h4>
+            <div class="form-check" th:each="Ingredient : ${ingredientList}">
+                <input class="form-check-input" type="checkbox" th:value="${Ingredient.id}"
+                       th:id="|Ingredient_${Ingredient.id}|" th:field="*{ingredients}">
+                <label class="form-check-label" th:for="|Ingredient_${Ingredient.id}|"
+                       th:text="${Ingredient.name}"></label>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="price" class="form-label">Price</label>
-            <input type="text" id="price" class="form-control" th:field="*{price}">
-        </div>
-        <div>
+
+        <div class="col-12">
             <button type="submit" class="btn btn-primary">Save</button>
             <a th:href="@{/pizza}" class="btn btn-primary">Cancel</a>
         </div>

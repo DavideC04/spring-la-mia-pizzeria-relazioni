@@ -1,7 +1,9 @@
 package org.exercise.java.springlamiapizzeriacrud.controller;
 
 import jakarta.validation.Valid;
+import org.exercise.java.springlamiapizzeriacrud.model.Ingredient;
 import org.exercise.java.springlamiapizzeriacrud.model.Pizza;
+import org.exercise.java.springlamiapizzeriacrud.repository.IngredientRepository;
 import org.exercise.java.springlamiapizzeriacrud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,8 @@ public class PizzaController {
 
     @Autowired
     private PizzaRepository pizzaRepository;
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     @GetMapping
     public String index(@RequestParam(name = "keyword") Optional<String> search, Model model) {
@@ -64,6 +68,10 @@ public class PizzaController {
 
     @GetMapping("/create")
     public String create(Model model) {
+        // recupero gli ingredienti presenti nel database
+        List<Ingredient> ingredientList = ingredientRepository.findAll();
+        // passo la lista degli ingredienti al model come attributo
+        model.addAttribute("ingredientList", ingredientList);
         // aggiungo al model un attributo di tipo Pizza
         model.addAttribute("pizze", new Pizza());
         return "pizze/form";
@@ -93,6 +101,8 @@ public class PizzaController {
         if (result.isPresent()) {
             // passo la Pizza come model dell'attributo
             model.addAttribute("pizze", result.get());
+            // passo gli ingredienti come model dell'attributo
+            model.addAttribute("ingredientList", ingredientRepository.findAll());
             // ritorno il template con l'edit
             return "pizze/update";
         } else {
@@ -102,9 +112,11 @@ public class PizzaController {
     }
 
     @PostMapping("/edit/{id}")
-    public String doEdit(@PathVariable Integer id, @Valid @ModelAttribute("pizze") Pizza formPizza, BindingResult bindingResult) {
+    public String doEdit(@PathVariable Integer id, @Valid @ModelAttribute("pizze") Pizza formPizza, BindingResult bindingResult, Model model) {
         // valido i dati
         if (bindingResult.hasErrors()) {
+            // passo gli ingredienti come model dell'attributo
+            model.addAttribute("ingredientList", ingredientRepository.findAll());
             // si sono verificati degli errori di validazione
             return "pizze/update";
         }
