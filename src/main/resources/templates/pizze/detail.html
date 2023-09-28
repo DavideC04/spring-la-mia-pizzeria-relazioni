@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Pizza Detail</title>
 </head>
-<body>
+<body class="bg-warning-subtle">
 <div class="container mt-3">
     <h1>Pizza Detail</h1>
     <hr>
@@ -37,12 +37,13 @@
         </div>
     </div>
     <!-- lista delle offerte -->
-    <table class="table" th:if="${pizze.specialOffers.size() > 0}">
+    <table class="table table-warning" th:if="${pizze.specialOffers.size() > 0}">
         <thead>
         <tr>
             <th>Title</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Edit/Delete</th>
         </tr>
         </thead>
         <tbody th:each="offer : ${pizze.specialOffers}">
