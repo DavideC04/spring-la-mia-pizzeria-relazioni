@@ -19,3 +19,4 @@ INSERT INTO db_pizza.ingredients(name)VALUES('Rosmarino');
 INSERT INTO db_pizza.ingredients(name)VALUES('Ricotta');
 INSERT INTO db_pizza.ingredients(name)VALUES('Pepe');
 INSERT INTO db_pizza.ingredients(name)VALUES('Provola');
+INSERT INTO db_pizza.ingredients(name)VALUES('Rucola');
