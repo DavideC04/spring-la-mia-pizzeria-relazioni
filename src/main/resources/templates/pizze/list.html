@@ -27,7 +27,10 @@
         </div>
     </form>
     <!-- button per aggiungere una pizza -->
-    <a th:href="@{/pizza/create}" class="btn btn-primary mb-3">Add Pizza</a>
+    <div class="d-flex align-items-center justify-content-around mb-2">
+        <a th:href="@{/pizza/create}" class="btn btn-primary">Add Pizza</a>
+        <a th:href="@{/ingredients}" class="btn btn-primary "><i class="fa-solid fa-folder-closed"></i> Ingredients Page</a>
+    </div>
     <!-- tabella contenente la lista delle pizze -->
     <table class="table table-striped table-warning">
         <thead th:if="${pizza.size() >0}">

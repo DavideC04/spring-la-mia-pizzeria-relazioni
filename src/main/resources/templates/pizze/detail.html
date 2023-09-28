@@ -23,7 +23,11 @@
         <dt>Price</dt>
         <dd th:text="${pizze.price}"></dd>
         <dt>Ingredients</dt>
-        <dd th:text="${pizze.ingredients.size()}"></dd>
+        <dd>
+            <ul>
+                <li th:each="ing : ${pizze.ingredients}" th:text="${ing.name}"></li>
+            </ul>
+        </dd>
     </dl>
     <div class="row">
         <h2>Special Offers</h2>
